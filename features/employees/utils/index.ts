@@ -1,13 +1,5 @@
 import type { Employee } from "../types";
 
-export const getInitials = (name: string): string => {
-  return name
-    .split(" ")
-    .map((part) => part.charAt(0))
-    .join("")
-    .toUpperCase();
-};
-
 export const getStatusStyles = (status: Employee["status"]): string => {
   switch (status) {
     case "Active":

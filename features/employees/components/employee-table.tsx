@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Employee } from "../types/";
-import { getInitials, getStatusStyles } from "../utils/";
+import { getInitials } from "@/lib/utils";
+import { getStatusStyles } from "../utils/";
 
 interface EmployeeTableProps {
   employees: Employee[];
