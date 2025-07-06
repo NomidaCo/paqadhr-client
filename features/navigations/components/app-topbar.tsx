@@ -10,6 +10,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { Badge } from "@/components/ui/badge";
 import { AccountSetting } from "./account-setting";
 import { User } from "@/types";
+import { ToastMessage } from "@/components/toast-message";
+import { toast } from "sonner";
 
 export const AppTopBar = () => {
   const { user, logout } = useAuth();
@@ -17,18 +19,22 @@ export const AppTopBar = () => {
 
   const handleClockIn = () => {
     setIsClockedIn(true);
-    // toast({
-    //   title: "Clocked In",
-    //   description: `You clocked in at ${new Date().toLocaleTimeString()}`,
-    // });
+    toast.info(
+      <ToastMessage
+        title="Clocked In"
+        description={`You clocked in at ${new Date().toLocaleTimeString()}`}
+      />,
+    );
   };
 
   const handleClockOut = () => {
     setIsClockedIn(false);
-    // toast({
-    //   title: "Clocked Out",
-    //   description: `You clocked out at ${new Date().toLocaleTimeString()}`,
-    // });
+    toast.info(
+      <ToastMessage
+        title="Clocked Out"
+        description={`You clocked out at ${new Date().toLocaleTimeString()}`}
+      />,
+    );
   };
   return (
     <div className="flex items-center justify-between gap-2 px-4 w-full">

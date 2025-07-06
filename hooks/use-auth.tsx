@@ -2,6 +2,8 @@
 //TODO: move provider to providers components
 import { createContext, useContext, useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { ToastMessage } from "@/components/toast-message";
 
 interface User {
   id: string;
@@ -46,21 +48,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         };
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-        // toast({
-        //   title: "Login Successful",
-        //   description: "Welcome back!",
-        // });
-        router.push("/dashboard");
+        toast.success(
+          <ToastMessage title="Login Successful" description="Welcome back!" />,
+        );
+        router.push("/app");
       } else {
         throw new Error("Invalid credentials");
       }
-    } catch {
-      // toast({
-      //   title: "Login Failed",
-      //   description:
-      //     error instanceof Error ? error.message : "An error occurred",
-      //   variant: "destructive",
-      // });
+    } catch (error) {
+      toast.error(
+        <ToastMessage
+          title="Login Failed"
+          description={
+            error instanceof Error ? error.message : "An error occurred"
+          }
+        />,
+      );
     } finally {
       setIsLoading(false);
     }
@@ -81,10 +84,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       };
       setUser(user);
       localStorage.setItem("user", JSON.stringify(user));
-      // toast({
-      //   title: "Registration Successful",
-      //   description: "Your account has been created!",
-      // });
+      toast.success(
+        <ToastMessage
+          title="Registration Successful"
+          description="Your account has been created!"
+        />,
+      );
 
       // Check if onboarding is needed
       if (user.needsOnboarding) {
@@ -92,13 +97,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         router.push("/dashboard");
       }
-    } catch {
-      // toast({
-      //   title: "Registration Failed",
-      //   description:
-      //     error instanceof Error ? error.message : "An error occurred",
-      //   variant: "destructive",
-      // });
+    } catch (error) {
+      toast.error(
+        <ToastMessage
+          title="Registration Failed"
+          description={
+            error instanceof Error ? error.message : "An error occurred"
+          }
+        />,
+      );
     } finally {
       setIsLoading(false);
     }
@@ -109,10 +116,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("onboarding_completed");
     router.push("/signin");
-    // toast({
-    //   title: "Logout Successful",
-    //   description: "You have been logged out",
-    // });
+    toast(
+      <ToastMessage
+        title="Logout Successful"
+        description="You have been logged out"
+      />,
+    );
   };
 
   return (
