@@ -39,7 +39,7 @@ export const EmployeeTable = ({ employees }: EmployeeTableProps) => {
               <TableRow key={employee.id}>
                 <TableCell className="font-medium">
                   <Link
-                    href={`/employees/${employee.id}`}
+                    href={`/app/employees/${employee.id}`}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <Avatar className="h-8 w-8">
