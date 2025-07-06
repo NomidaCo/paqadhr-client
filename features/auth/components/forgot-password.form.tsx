@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 // import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Mail } from "lucide-react";
+import { ToastMessage } from "@/components/toast-message";
+import { toast } from "sonner";
 
 interface ForgotPasswordFormProps {
   onBack: () => void;
@@ -24,16 +26,19 @@ export const ForgotPasswordForm = ({ onBack }: ForgotPasswordFormProps) => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       setIsEmailSent(true);
-      // toast({
-      //   title: "Reset link sent",
-      //   description: "Check your email for password reset instructions.",
-      // });
+      toast.success(
+        <ToastMessage
+          title="Reset link sent"
+          description="Check your email for password reset instructions."
+        />,
+      );
     } catch {
-      // toast({
-      //   title: "Error",
-      //   description: "Failed to send reset email. Please try again.",
-      //   variant: "destructive",
-      // });
+      toast.error(
+        <ToastMessage
+          title="Error"
+          description="Failed to send reset email. Please try again."
+        />,
+      );
     } finally {
       setIsLoading(false);
     }
