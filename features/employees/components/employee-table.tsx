@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Employee } from "../types/";
-import { getInitials, getStatusStyles } from "../utils/";
+import { getInitials } from "@/lib/utils";
+import { getStatusStyles } from "../utils/";
 
 interface EmployeeTableProps {
   employees: Employee[];
@@ -38,7 +39,7 @@ export const EmployeeTable = ({ employees }: EmployeeTableProps) => {
               <TableRow key={employee.id}>
                 <TableCell className="font-medium">
                   <Link
-                    href={`/employees/${employee.id}`}
+                    href={`/app/employees/${employee.id}`}
                     className="flex items-center gap-2 hover:underline"
                   >
                     <Avatar className="h-8 w-8">

@@ -4,7 +4,11 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import {
   Users,
@@ -22,6 +26,7 @@ import {
   TrendingUp,
   Heart,
   Building,
+  Sparkles,
 } from "lucide-react";
 import { NavMain } from "./nav-main";
 
@@ -133,8 +138,19 @@ export const AppSidebar = ({
       {...props}
       className="bg-sidebar/95 backdrop-blur-xl"
     >
-      <SidebarHeader>
-        {/* <WorkspaceSwitcher teams={dummyData.workspaces} /> */}
+      <SidebarHeader className="relative">
+        <SidebarMenu>
+          <SidebarMenuItem className="relative">
+            <SidebarMenuButton asChild className="text-xs">
+              <div>
+                <Sparkles />
+                <span>Modern HRMS</span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+
+        <SidebarTrigger className="size-6 absolute top-1/2 right-[-50px] z-[500] -translate-y-1/2 " />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navItems} />
